@@ -1,401 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Our Story ❤️</title>
+<title>Henry × Maryam ❤️</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        body {
-            background: #0b0710;
-            color: white;
-            font-family: Georgia, serif;
-            overflow-x: hidden;
-        }
+body{
+    background:#050508;
+    color:white;
+    overflow:hidden;
+    font-family:Georgia, serif;
+}
 
-        /* HERO */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 30px;
-            background:
-                radial-gradient(circle at top, #5b2145 0%, #190d1c 45%, #0b0710 75%);
-        }
+/* Background particles */
+#particles{
+    position:fixed;
+    width:100%;
+    height:100%;
+    z-index:-1;
+}
 
-        .small-text {
-            font-family: Arial, sans-serif;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            font-size: 12px;
-            opacity: 0.7;
-            margin-bottom: 25px;
-        }
+/* Main screen */
+.hero{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+}
 
-        h1 {
-            font-size: clamp(55px, 15vw, 110px);
-            font-weight: 400;
-            line-height: 0.9;
-            margin-bottom: 25px;
-        }
+.small{
+    letter-spacing:4px;
+    opacity:0.6;
+    margin-bottom:20px;
+    font-size:12px;
+}
 
-        .heart {
-            color: #ff5c93;
-            animation: heartbeat 1.5s infinite;
-            display: inline-block;
-        }
+h1{
+    font-size:55px;
+    margin-bottom:20px;
+}
 
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            15% { transform: scale(1.2); }
-            30% { transform: scale(1); }
-        }
+.heart{
+    color:#ff4d88;
+    animation:beat 1.5s infinite;
+}
 
-        .subtitle {
-            max-width: 600px;
-            font-size: 18px;
-            line-height: 1.7;
-            color: #d8cbd4;
-        }
+@keyframes beat{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.2);}
+}
 
-        .scroll {
-            position: absolute;
-            bottom: 25px;
-            font-family: Arial, sans-serif;
-            font-size: 11px;
-            letter-spacing: 3px;
-            opacity: 0.5;
-        }
+.quote{
+    max-width:350px;
+    line-height:1.8;
+    color:#d2c7cf;
+    margin-bottom:40px;
+}
 
-        /* SECTIONS */
-        section {
-            padding: 100px 20px;
-            max-width: 1100px;
-            margin: auto;
-        }
+.button{
+    width:220px;
+    height:60px;
+    border:2px solid #ff4d88;
+    border-radius:50px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    transition:0.4s;
+}
 
-        .section-title {
-            text-align: center;
-            font-size: 42px;
-            font-weight: 400;
-            margin-bottom: 15px;
-        }
+.button:hover{
+    background:#ff4d88;
+}
 
-        .section-subtitle {
-            text-align: center;
-            color: #a99ca7;
-            margin-bottom: 50px;
-            font-family: Arial, sans-serif;
-        }
+#story{
+    display:none;
+    padding:40px;
+    text-align:center;
+    animation:fade 2s;
+}
 
-        /* STORY */
-        .story {
-            text-align: center;
-            max-width: 700px;
-            margin: auto;
-            font-size: 19px;
-            line-height: 2;
-            color: #ddd2dc;
-        }
-
-        /* MEMORY CARDS */
-        .memories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 20px;
-        }
-
-        .memory {
-            height: 300px;
-            border-radius: 20px;
-            background: linear-gradient(145deg, #32172b, #171019);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            border: 1px solid #402238;
-            transition: transform 0.3s;
-        }
-
-        .memory:hover {
-            transform: translateY(-8px);
-        }
-
-        .memory span {
-            color: #bdaebb;
-            font-family: Arial, sans-serif;
-        }
-
-        /* LOVE CARDS */
-        .love-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-
-        .love-card {
-            padding: 30px 20px;
-            border-radius: 18px;
-            background: #161019;
-            border: 1px solid #30202f;
-            text-align: center;
-        }
-
-        .love-card h3 {
-            margin-bottom: 10px;
-            font-weight: 400;
-        }
-
-        .love-card p {
-            color: #a99ca7;
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        /* SONG */
-        .song {
-            max-width: 600px;
-            margin: auto;
-            padding: 35px;
-            text-align: center;
-            border-radius: 25px;
-            background: linear-gradient(145deg, #291526, #120c14);
-            border: 1px solid #48283f;
-        }
-
-        .song-icon {
-            font-size: 50px;
-            margin-bottom: 15px;
-        }
-
-        .song h3 {
-            font-size: 24px;
-            font-weight: 400;
-            margin-bottom: 8px;
-        }
-
-        .song p {
-            color: #9d8e9b;
-            margin-bottom: 25px;
-            font-family: Arial, sans-serif;
-        }
-
-        audio {
-            width: 100%;
-        }
-
-        /* LETTER */
-        .letter {
-            max-width: 700px;
-            margin: auto;
-            padding: 45px 30px;
-            background: #f2e8ee;
-            color: #24151f;
-            border-radius: 5px;
-            box-shadow: 0 20px 70px rgba(0,0,0,0.4);
-        }
-
-        .letter p {
-            font-size: 18px;
-            line-height: 2;
-            margin-bottom: 20px;
-        }
-
-        /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 80px 20px;
-            color: #756572;
-            font-family: Arial, sans-serif;
-        }
-
-        footer .big-heart {
-            font-size: 40px;
-            margin-bottom: 15px;
-        }
-    </style>
+@keyframes fade{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+</style>
 </head>
 
 <body>
 
-    <!-- HERO -->
-    <div class="hero">
-        <div class="small-text">A little piece of us</div>
+<canvas id="particles"></canvas>
 
-        <h1>
-            Our<br>
-            Story <span class="heart">♥</span>
-        </h1>
+<div class="hero" id="hero">
 
-        <p class="subtitle">
-            Some people become a chapter in your life.
-            Somehow, you became my favorite story.
-        </p>
+    <div class="small">A LITTLE PIECE OF US</div>
 
-        <div class="scroll">SCROLL TO BEGIN ↓</div>
+    <h1>
+        HENRY × MARYAM
+        <span class="heart">♥</span>
+    </h1>
+
+    <p class="quote">
+        Two people.
+        One story.
+        A thousand moments worth remembering.
+    </p>
+
+    <div class="button" onclick="beginStory()">
+        ♡ BEGIN OUR STORY ♡
     </div>
 
+</div>
 
-    <!-- OUR STORY -->
-    <section>
-        <h2 class="section-title">How It All Began</h2>
-        <p class="section-subtitle">The beginning of something beautiful</p>
+<div id="story">
+    <h1>Our Story Begins ✨</h1>
 
-        <div class="story">
-            This is where our story begins...
-            <br><br>
-            From the first conversation to all the little moments
-            that slowly became memories, every part of our journey
-            deserves its own place here.
-        </div>
-    </section>
+    <br><br>
 
+    <p>
+        It started with two people who had no idea
+        how important they would become to each other.
+    </p>
 
-    <!-- MEMORIES -->
-    <section>
-        <h2 class="section-title">Our Memories</h2>
-        <p class="section-subtitle">
-            Little moments that became everything
-        </p>
+    <br><br>
 
-        <div class="memories">
-            <div class="memory">
-                <span>📸 Our first memory</span>
-            </div>
+    <p>
+        This website is a collection of memories,
+        music, moments and feelings.
+    </p>
 
-            <div class="memory">
-                <span>📸 A favorite moment</span>
-            </div>
+    <br><br>
 
-            <div class="memory">
-                <span>📸 One unforgettable day</span>
-            </div>
+    <h2>Henry ❤️ Maryam</h2>
+</div>
 
-            <div class="memory">
-                <span>📸 Just us</span>
-            </div>
-        </div>
-    </section>
+<script>
 
+/* Button animation */
+function beginStory(){
+    document.getElementById("hero").style.display="none";
+    document.getElementById("story").style.display="block";
+}
 
-    <!-- THINGS I LOVE -->
-    <section>
-        <h2 class="section-title">Things I Love About You</h2>
-        <p class="section-subtitle">
-            And honestly... the list is much longer.
-        </p>
+/* Particles */
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
 
-        <div class="love-grid">
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
 
-            <div class="love-card">
-                <h3>♡ Your Smile</h3>
-                <p>
-                    Somehow it can make an ordinary moment feel special.
-                </p>
-            </div>
+let particles=[];
 
-            <div class="love-card">
-                <h3>♡ Your Heart</h3>
-                <p>
-                    The kindness and warmth you carry with you.
-                </p>
-            </div>
+for(let i=0;i<100;i++){
+    particles.push({
+        x:Math.random()*canvas.width,
+        y:Math.random()*canvas.height,
+        size:Math.random()*3,
+        speed:Math.random()*0.5
+    });
+}
 
-            <div class="love-card">
-                <h3>♡ Your Chaos</h3>
-                <p>
-                    Because life would definitely be less fun without it.
-                </p>
-            </div>
+function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
 
-            <div class="love-card">
-                <h3>♡ Just You</h3>
-                <p>
-                    There doesn't always need to be a reason.
-                </p>
-            </div>
+    ctx.fillStyle="rgba(255,100,160,0.7)";
 
-        </div>
-    </section>
+    particles.forEach(p=>{
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+        ctx.fill();
 
+        p.y-=p.speed;
 
-    <!-- SONG -->
-    <section>
-        <h2 class="section-title">Our Song</h2>
-        <p class="section-subtitle">
-            Press play when you're ready.
-        </p>
+        if(p.y<0){
+            p.y=canvas.height;
+        }
+    });
 
-        <div class="song">
-            <div class="song-icon">🎵</div>
+    requestAnimationFrame(animate);
+}
 
-            <h3>Our Song</h3>
+animate();
 
-            <p>A song that reminds me of you.</p>
-
-            <!-- We'll add your song here later -->
-            <audio controls>
-                <source src="music/our-song.mp3" type="audio/mpeg">
-            </audio>
-        </div>
-    </section>
-
-
-    <!-- LETTER -->
-    <section>
-        <h2 class="section-title">A Letter For You</h2>
-
-        <div class="letter">
-
-            <p>Dear you,</p>
-
-            <p>
-                I don't know if a website can really capture everything
-                someone means to you, but I wanted to try.
-            </p>
-
-            <p>
-                These photos, songs and memories are just little pieces
-                of a story that means a lot to me.
-            </p>
-
-            <p>
-                Thank you for being a part of my life and for creating
-                so many moments worth remembering.
-            </p>
-
-            <p>
-                Whatever happens and wherever life takes us,
-                I'll always be grateful for the memories we've made.
-            </p>
-
-            <p>
-                With love,<br>
-                <strong>Me ❤️</strong>
-            </p>
-
-        </div>
-    </section>
-
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="big-heart">♥</div>
-        Made with love, just for you.
-        <br><br>
-        Our Story • Forever a beautiful memory
-    </footer>
+</script>
 
 </body>
 </html>
