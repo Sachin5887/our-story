@@ -1,199 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Henry × Maryam ❤️</title>
+    <title>Henry × Maryam</title>
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    background:#050508;
-    color:white;
-    overflow:hidden;
-    font-family:Georgia, serif;
-}
-
-/* Background particles */
-#particles{
-    position:fixed;
-    width:100%;
-    height:100%;
-    z-index:-1;
-}
-
-/* Main screen */
-.hero{
-    height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:20px;
-}
-
-.small{
-    letter-spacing:4px;
-    opacity:0.6;
-    margin-bottom:20px;
-    font-size:12px;
-}
-
-h1{
-    font-size:55px;
-    margin-bottom:20px;
-}
-
-.heart{
-    color:#ff4d88;
-    animation:beat 1.5s infinite;
-}
-
-@keyframes beat{
-    0%,100%{transform:scale(1);}
-    50%{transform:scale(1.2);}
-}
-
-.quote{
-    max-width:350px;
-    line-height:1.8;
-    color:#d2c7cf;
-    margin-bottom:40px;
-}
-
-.button{
-    width:220px;
-    height:60px;
-    border:2px solid #ff4d88;
-    border-radius:50px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    cursor:pointer;
-    transition:0.4s;
-}
-
-.button:hover{
-    background:#ff4d88;
-}
-
-#story{
-    display:none;
-    padding:40px;
-    text-align:center;
-    animation:fade 2s;
-}
-
-@keyframes fade{
-    from{opacity:0;}
-    to{opacity:1;}
-}
-</style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<canvas id="particles"></canvas>
+    <main id="app">
 
-<div class="hero" id="hero">
+        <!-- OPENING SCENE -->
+        <section class="scene active" id="opening">
 
-    <div class="small">A LITTLE PIECE OF US</div>
+            <div class="particles"></div>
 
-    <h1>
-        HENRY × MARYAM
-        <span class="heart">♥</span>
-    </h1>
+            <div class="intro">
+                <p class="eyebrow">A LITTLE PIECE OF US</p>
 
-    <p class="quote">
-        Two people.
-        One story.
-        A thousand moments worth remembering.
-    </p>
+                <h1>
+                    HENRY
+                    <span>×</span>
+                    MARYAM
+                </h1>
 
-    <div class="button" onclick="beginStory()">
-        ♡ BEGIN OUR STORY ♡
-    </div>
+                <p class="intro-text">
+                    Two people.<br>
+                    One story.<br>
+                    A thousand moments worth remembering.
+                </p>
 
-</div>
+                <button id="beginBtn">
+                    <span>♡</span>
+                    BEGIN OUR STORY
+                    <span>♡</span>
+                </button>
+            </div>
 
-<div id="story">
-    <h1>Our Story Begins ✨</h1>
+        </section>
 
-    <br><br>
 
-    <p>
-        It started with two people who had no idea
-        how important they would become to each other.
-    </p>
+        <!-- STORY SCENE -->
+        <section class="scene" id="beginning">
 
-    <br><br>
+            <div class="scene-content">
 
-    <p>
-        This website is a collection of memories,
-        music, moments and feelings.
-    </p>
+                <p class="chapter">CHAPTER 01</p>
 
-    <br><br>
+                <h2>Our Story Begins</h2>
 
-    <h2>Henry ❤️ Maryam</h2>
-</div>
+                <div class="line"></div>
 
-<script>
+                <p>
+                    Every beautiful story has a beginning.
+                    Ours is somewhere between two people
+                    who didn't know what was waiting for them.
+                </p>
 
-/* Button animation */
-function beginStory(){
-    document.getElementById("hero").style.display="none";
-    document.getElementById("story").style.display="block";
-}
+                <button class="nextBtn">
+                    CONTINUE →
+                </button>
 
-/* Particles */
-const canvas=document.getElementById("particles");
-const ctx=canvas.getContext("2d");
+            </div>
 
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
+        </section>
 
-let particles=[];
 
-for(let i=0;i<100;i++){
-    particles.push({
-        x:Math.random()*canvas.width,
-        y:Math.random()*canvas.height,
-        size:Math.random()*3,
-        speed:Math.random()*0.5
-    });
-}
+        <!-- FUTURE SCENES WILL GO HERE -->
 
-function animate(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
+    </main>
 
-    ctx.fillStyle="rgba(255,100,160,0.7)";
-
-    particles.forEach(p=>{
-        ctx.beginPath();
-        ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
-        ctx.fill();
-
-        p.y-=p.speed;
-
-        if(p.y<0){
-            p.y=canvas.height;
-        }
-    });
-
-    requestAnimationFrame(animate);
-}
-
-animate();
-
-</script>
+    <script src="script.js"></script>
 
 </body>
 </html>
